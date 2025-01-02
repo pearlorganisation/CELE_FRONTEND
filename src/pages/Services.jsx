@@ -3,6 +3,8 @@ import HeroSection from "../components/HeroSection";
 import { useEffect } from "react";
 import { getAllServices } from "../features/actions/servicesAction";
 import { useNavigate } from "react-router-dom";
+import ServiceCard from "../components/ServiceCard/ServiceCard";
+import NeedServices from "../components/NeedServices/NeedServices";
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -37,27 +39,16 @@ const Services = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-10 px-10">
+      <div className="grid border  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
         {Array.isArray(services) &&
-          services.slice(0, 3).map((service) => (
-            <div
-              key={service._id}
-              onClick={() => navigate(`/services/${service._id}`)}
-              className="relative hover:cursor-pointer group"
-            >
-              <img
-                src={service?.banner?.secure_url}
-                className="h-full w-full object-cover transition-transform duration-300"
-                alt={service?.name}
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-60 transition-all duration-300"></div>
-              <h1 className="absolute top-[40%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] text-3xl text-center text-white font-bold z-10">
-                {service?.name}
-              </h1>
-            </div>
-          ))}
+          services
+            .slice(0, 3)
+            .map((service) => (
+              <ServiceCard key={service._id} service={service} />
+            ))}
       </div>
+
+      <NeedServices />
     </div>
   );
 };

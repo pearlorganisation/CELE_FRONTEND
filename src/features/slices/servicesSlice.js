@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { getAllServices } from "../actions/servicesAction";
+import { getAllServices, getServiceById } from "../actions/servicesAction";
 
 const initialState = {
   loading: false,
   services: [],
+  service: {},
   paginate: {},
   error: null,
   success: false,
@@ -31,6 +32,33 @@ const servicesSlice = createSlice({
       })
 
       .addCase(getAllServices.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.success = false;
+        toast.error(`Error: ${action.payload}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+      })
+
+      .addCase(getServiceById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+
+      .addCase(getServiceById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.service = action.payload;
+        state.success = true;
+      })
+
+      .addCase(getServiceById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         state.success = false;
