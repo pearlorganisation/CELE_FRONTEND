@@ -10,6 +10,7 @@ import Obituaries from "../pages/Obituaries";
 import ObituariesDetails from "../pages/ObituariesDetails";
 import Services from "../pages/Services";
 import ServiceDetails from "../pages/ServiceDetails";
+import Pricing from "../pages/Pricing";
 
 const Routes = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const Routes = createBrowserRouter([
       {
         path: "services/:id",
         element: <ServiceDetails />,
+      },
+      {
+        path: "pricing",
+        element: <Pricing />,
       },
     ],
   },

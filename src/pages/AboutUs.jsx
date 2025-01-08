@@ -16,22 +16,28 @@ const AboutUs = () => {
       <div>
         <div className="flex flex-col mx-48 justify-center items-center mt-5 mb-3">
           <h1 className="text-3xl font-semibold pb-3 mt-6">
-            What do we stand for and how did we reach to it?
+            We help you remember your loved ones
           </h1>
           <p className="w-[80%] text-wrap text-justify text-gray-700 mt-6">
-            Remember the days when we used to fill our slam-books with career
-            aspirations like scientist, teacher and doctor? Nobody at that time
-            thought there could’ve been a career in Travelling, let alone being
-            a travelpreneur! But as life happens, you understand that a career
-            could be anything where you can be a problem-solver for the society.
+            Announcing transition and putting up a permanent memorial of our
+            loved ones is probably the best way to celebrate their lives.
             <br />
-            And that’s how a few engineers from NIT Kurukshetra found that the
-            travel industry in India needed a fresh burst of young energy! The
-            need of the hour was to convert a dispersed agent based model to a
-            more friendly ,transparent and an accessible community for Indian
-            travellers, and hence WanderOn. Let’s have a closer look at the
-            hustlers who’re on a mission to stir up people’s life with memorable
-            experiences.
+          </p>
+
+          <h1>
+            We help each of us give our story in a special way to our loved ones
+            called by God
+          </h1>
+
+          <p>
+            Celebrate Life is a record of dignity with a difference.... Fully
+            Digitalized! This is a news platform that reports the recent
+            transition/death of a person, typically along with an account of the
+            person's life and information about the upcoming funeral. Announcing
+            transition and putting up a permanent memorial of our loved ones is
+            probably the best way to celebrate their lives. This value added
+            website is a permanent way of sharing memories with family,
+            relatives and friends from anywhere in the world.
           </p>
         </div>
       </div>
