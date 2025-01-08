@@ -131,10 +131,16 @@ function Header() {
                 )}
               </div>
   
-              {/* Pre-Plan Now */}
+        
               <div className="hover:text-green-800">
                 <a href="#" className="text-gray-600">
                 Memorials
+                </a>
+              </div>
+                    {/* Pre-Plan Now */}
+              <div className="hover:text-green-800">
+                <a href="#" className="text-gray-600">
+                Pre-Plan Now
                 </a>
               </div>
   
@@ -144,7 +150,7 @@ function Header() {
                   className="flex items-center space-x-1 hover:text-green-800"
                   onClick={() => handleDropdown("Preplan Now Grief")}
                 >
-                  <span>Preplan Now Grief</span>
+                  <span> Grief</span>
                   {activeDropdown === "Preplan Now Grief" ? (
                     <RiArrowDropUpLine className="h-5 w-5" />
                   ) : (

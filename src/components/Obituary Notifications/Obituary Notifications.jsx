@@ -43,10 +43,10 @@ dispatch(sendEmail(data))
   <input
     type="text"
     placeholder="Enter your email address"
-    className="max-w-3xl outline-none text-left placeholder:text-left px-20 bg-none w-full  "
+    className="max-w-3xl outline-none text-left placeholder:text-left px-2 bg-none w-full  "
     {...register("to",{required:"Email is required"})}
   />
-{errors.to && <p>{errors.to.message}</p>}
+{/* {errors.to && <p>{errors.to.message}</p>} */}
 </div>
 <button className="max-w-3xl mx-auto flex bg-[#0B4024] text-white   px-80 py-2" type="submit"  >Join Mailing List</button>
   </form>

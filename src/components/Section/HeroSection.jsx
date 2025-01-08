@@ -24,7 +24,7 @@ function HeroSection() {
     <Slider {...settings}>
       <div className='overflow-hidden '>
         <div className='relative '>
-          <img src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=" alt=""  className='w-full h-96 object-cover'/>
+          <img src="https://static.vecteezy.com/system/resources/previews/033/919/308/non_2x/the-sun-rises-over-the-mountains-and-flowers-in-the-foreground-ai-generated-free-photo.jpg" alt=""  className='w-full h-96 object-cover'/>
       <div className='absolute inset-0 bg-black opacity-40  flex flex-col items-center  justify-center text-center text-white'>
         <h2 className='text-4xl'>About Us  </h2>
         <p className="mt-4 text-lg">Learn how we have served southern Louisiana since 1895.</p>

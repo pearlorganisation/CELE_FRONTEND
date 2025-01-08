@@ -314,21 +314,24 @@ export default function Header() {
                 Memorials
                 </a>
               </div>
-  
+              <div className="hover:text-green-800">
+                <a href="#" className="text-gray-600">
+                Pre-Plan Now
+                </a></div>
               {/* Grief Dropdown */}
               <div className="relative group inline-block">
                 <button
                   className="flex items-center space-x-1 hover:text-green-800"
-                  onClick={() => handleDropdown("Preplan Now Grief")}
+                  onClick={() => handleDropdown(" Grief")}
                 >
-                  <span>Preplan Now Grief</span>
-                  {activeDropdown === "Preplan Now Grief" ? (
+                  <span>  Grief</span>
+                  {activeDropdown === " Grief" ? (
                     <RiArrowDropUpLine className="h-5 w-5" />
                   ) : (
                     <RiArrowDropDownLine className="h-5 w-5" />
                   )}
                 </button>
-                {activeDropdown === "Preplan Now Grief" && (
+                {activeDropdown === " Grief" && (
                   <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-36">
                     <li>
                       <a
