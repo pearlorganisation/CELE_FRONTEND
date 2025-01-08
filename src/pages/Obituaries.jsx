@@ -69,7 +69,7 @@ const Obituaries = () => {
     dispatch(getAllObituaries({ page: 1 }));
   }, []);
 
-  console.log(obituaries, "my obi data");
+  console.log(obituaries, "my obi data 123");
 
   const handleSearch = (query) => {
     console.log("Search query:", query);

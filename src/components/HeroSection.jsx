@@ -5,7 +5,7 @@ import React from "react";
 const HeroSection = ({ title, image, subtitle }) => {
   return (
     <section
-      className="relative w-full h-screen bg-cover bg-center"
+      className="relative w-full h-screen bg-cover bg-center "
       style={{
         backgroundImage: `url(${image})`,
       }}

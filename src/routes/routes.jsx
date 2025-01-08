@@ -9,6 +9,7 @@ import ContactUs from "../pages/ContactUs";
 import Obituaries from "../pages/Obituaries";
 import ObituariesDetails from "../pages/ObituariesDetails";
 import Services from "../pages/Services";
+import  ObituaryNotifications  from "../components/Obituary Notifications/Obituary Notifications";
 
 const Routes = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const Routes = createBrowserRouter([
         path: "services",
         element: <Services />,
       },
+      {
+        path:"/notification",
+        element:<ObituaryNotifications />
+      }
     ],
   },
 ]);
