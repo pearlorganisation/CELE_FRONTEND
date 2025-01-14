@@ -1,48 +1,25 @@
-import React, { useState } from 'react'
-import PersonalServices from './PersonalServices.jsx'
-import Cremation from './Cremation.jsx'
-import HonoringLife from './HonoringLife.jsx'
-import Veterans from './Veterans.jsx'
+import HeaderComp from "./Headercomp";
+import ImgCard from "./ImgCard";
 
 function FuneralMemorial() {
-  const[activeTab,setActiveTab]=useState('Funeral Memorial')
-  const[activeTabindex,setActiveTabIndex]=useState(0)
-
-  const shiftTab=()=>{
-switch(activeTabindex){
-  case 0:return(
-    <>
-    <FuneralMemorial/>
-    </>
-  )
-  case 1:return<div><PersonalServices /></div>
-  case 2: return <div><Cremation/></div>
-  case 3: return <div><HonoringLife/></div>
-  case 4: return <div><Veterans/></div>
-case 5:return <div><Veterans/></div>
-}
-
-  }
   return (
-    <div className='h-full px-4 py-10'>
-        <div className="absolute top-44 text-white text-center w-full text-7xl font-bold">
-          <div>{activeTab}</div>
-        </div>
-      {/* tabshifting */}
 
-      <div className='w-full '>
-        <div className='bg-[#0F4B11]  '>
-        <button
-            className={`px-4 py-2 ${activeTab === "Funeral Memorial" ? "border-b-2 border-green-600 font-semibold bg-[#0c3b0e] text-white" : ""} uppercase`}
-            onClick={() => {
-              setActiveTab("Funeral Memorial");
-              setActiveTabIndex(0);
-            }}
-          >Funeral Memorial </button>
-      </div>
+    <div>
+      <HeaderComp />
+      <ImgCard
+      h1="Funeral & Memorial Services"
+      p="Whether you choose burial or cremation, a funeral service is an important part of honoring your loved one and starting the healing process. We offer service options that are meaningful and healing."
+        image="https://irp.cdn-website.com/5d83079e/dms3rep/multi/Cemetery+Plots+and+property+in+New+Orleans+and+the+surrounding+areas+offered+by+Mothe+Funeral+Home+1920.webp"
+        title="Funeral Services"
+        description="This time is set aside for family and friends to gather together to say goodbye, while being in the comfort of those closest to them. We can personalize the visitation to be as unique as your loved one with a tribute video, items or displays that were important to your loved one, or simply pictures displayed. We will work with your family to design the perfect gathering experience."
+      />
+          <ImgCard
+  
+        image="https://lirp.cdn-website.com/5d83079e/dms3rep/multi/opt/Funeral+-+Memorial+Services+offered+at+Mothe+Funeral+Home+in+Louisiana+in+New+Orleans+and+the+surrounding+cities+PNG-1920w.png"
+        title="Burial Services"
+        description="A graveside or committal service is typically held immediately following the funeral service and can also be a small intimate gathering of those closest to you. We work with families to design a service that honors their loved one."
+      />
     </div>
-    </div>
-  )
+  );
 }
-
-export default FuneralMemorial
+export default FuneralMemorial;

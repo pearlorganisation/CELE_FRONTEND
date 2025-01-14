@@ -11,7 +11,8 @@ import ObituariesDetails from "../pages/ObituariesDetails";
 import Services from "../pages/Services";
 import  ObituaryNotifications  from "../components/Obituary Notifications/Obituary Notifications";
 import FuneralBenefits from "../components/resources/FuneralBeniefits";
-import FuneralMemorial from "../components/servicesSection/Funeral&Memorial";
+import Funeral from "../components/servicesSection/funeral";
+import OurServices from "../components/servicesSection/OurServices";
 
 const Routes = createBrowserRouter([
   {
@@ -64,9 +65,13 @@ const Routes = createBrowserRouter([
       path:"/funeralBenefits",
     element:<FuneralBenefits/>},
     {
-      path:"/funeralMemorial",
-      element:<FuneralMemorial/>
-    }
+      path:"/funeral",
+      element:<Funeral/>
+    },
+    {
+      path:"/ourServices",
+      element:<OurServices/>
+    },
     ],
   },
 ]);
