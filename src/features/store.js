@@ -3,12 +3,12 @@ import userReducer from "../features/slices/userSlice";
 import contactReducer from "../features/slices/contactSlice";
 import obituaryReducer from "../features/slices/obituarySlice";
 import servicesReducer from "../features/slices/servicesSlice";
+import reviewsReducer from "../features/slices/reviewsSlice.js";
 import { combineReducers } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import emailReducer from "./slices/Notification.js";
 import storage from "redux-persist/lib/storage";
-
 
 const persistConfig = {
   key: "CELE_WEBSITE",
@@ -22,9 +22,9 @@ const combinedReducer = combineReducers({
   contact: contactReducer,
   obituaries: obituaryReducer,
   services: servicesReducer,
-  email:emailReducer 
+  reviews: reviewsReducer,
+  email: emailReducer,
 });
-
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);
 

@@ -1,10 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllReviews } from "../../features/actions/reviewsActions";
 
 function FamilyReview() {
+  const { reviews } = useSelector((state) => state.reviews);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllReviews());
+  }, []);
+
+  console.log(reviews, "my family reviews");
   const sliderRef = useRef(null);
 
   const next = () => {
@@ -22,7 +35,7 @@ function FamilyReview() {
     autoplay: true, // Enable autoplay
     autoplaySpeed: 3000, // Set autoplay speed (3 seconds)
     infinite: true, // Loop slides infinitely
-    lazyLoad: 'ondemand', // Lazy load images
+    lazyLoad: "ondemand", // Lazy load images
   };
 
   return (
@@ -45,32 +58,25 @@ function FamilyReview() {
 
       {/* Slider */}
       <Slider ref={sliderRef} {...settings}>
-        <div className="bg-gray-300 text-center flex flex-col gap-10 relative">
-          <img
-            src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8="
-            alt="Mountain Landscape"
-            className="w-full h-80 sm:h-96 object-cover"
-          />
-          <h1 className='absolute top-30   text-white'>Faimly reviews</h1>
-          <p className='absolute top-32 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est culpa similique eius nesciunt modi vero blanditiis nemo perspiciatis sed ut impedit voluptates, harum quia asperiores sunt itaque error. Tempore, eos.</p>
-        </div>
-        <div className="bg-gray-300 text-center flex flex-col gap-10 relative">
-          <img
-            src="https://media.istockphoto.com/id/1169492344/photo/scenic-view-of-mountains-against-sky.jpg?s=1024x1024&w=0&k=20&c=Giwyyh9dKq7VHTR9QUXYW8quUr18guKnnXeqbOICqKI="
-            alt="Scenic Mountains"
-            className="w-full h-80 sm:h-96 object-cover"
-          />
-             <p className='absolute top-32 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est culpa similique eius nesciunt modi vero blanditiis nemo perspiciatis sed ut impedit voluptates, harum quia asperiores sunt itaque error. Tempore, eos.</p>
-        </div>
-        <div className="bg-gray-300 text-center flex flex-col gap-10 relative ">
-          <img
-            src="https://media.istockphoto.com/id/503383030/photo/lake-moraine-in-banff-national-park.jpg?s=1024x1024&w=0&k=20&c=0Zsk9vwvRhCOrFs_Cmk3Q1lBNBx_sMLK7zV0ZY-v2UI="
-            alt="Lake Moraine"
-            className="w-full h-80 sm:h-96 object-cover"
-          />
-             <p className='absolute top-32 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est culpa similique eius nesciunt modi vero blanditiis nemo perspiciatis sed ut impedit voluptates, harum quia asperiores sunt itaque error. Tempore, eos.</p>
-
-        </div>
+        {Array.isArray(reviews) &&
+          reviews.map((review) => (
+            <div
+              key={review._id}
+              className="bg-gray-300 text-center flex flex-col gap-10 relative"
+            >
+              <img
+                src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8="
+                alt="Mountain Landscape"
+                className="w-full h-80 sm:h-96 object-cover"
+              />
+              <h1 className="absolute top-30  left-[50%] text-white text-3xl">
+                {review.name}
+              </h1>
+              <p className="absolute bottom-32 left-[30%] text-white">
+                {review.review}
+              </p>
+            </div>
+          ))}
       </Slider>
     </div>
   );
