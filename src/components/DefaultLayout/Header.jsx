@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../features/slices/authSlice";
@@ -6,7 +6,6 @@ import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 export default function Header() {
   const [state, setState] = useState(false);
-  // const [isLogin, setIsLogin] = useState(false);
 
   const navigation = [
     { title: "Home", path: "/" },
@@ -27,97 +26,107 @@ export default function Header() {
     dispatch(logout());
   };
 
+  const[activeDropdown,setActiveDropdown]=useState()
+  const dropdownRef= useRef()
+  const handleDropdown = (dropdown) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
 
-  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null)
+      }
+    };
 
+    document.addEventListener("mousedown", handleClickOutside);
 
-      const [activeDropdown, setActiveDropdown] = useState(null);
-  
-      const handleDropdown = (dropdown) => {
-        setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-      };
-    
-
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <>
-     <nav className="bg-purple-500  w-full border-b md:border-0 md:static  z-50">
-      <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
-          <Link to="/">
-            <div className="flex flex-row gap-3 justify-center items-center">
-              <img
-                src="https://www.celebratelife.co.ke/assets/images/logo/logo-white-two.png"
-                className="w-12 h-12"
-              />
-              <h1 className="text-white"> CELE </h1>
+    <div ref={dropdownRef}>
+    <nav className="bg-purple-500  w-full border-b md:border-0 md:static  z-50">
+        <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+            <Link to="/">
+              <div className="flex flex-row gap-3 justify-center items-center">
+                <img
+                  src="https://www.celebratelife.co.ke/assets/images/logo/logo-white-two.png"
+                  className="w-12 h-12"
+                />
+                <h1 className="text-white"> CELE </h1>
+              </div>
+            </Link>
+            <div className="md:hidden">
+              <button
+                className="text-gray-700 outline-none p-2 rounded-md focus:border-white border-2 border-white focus:border"
+                onClick={() => setState(!state)}
+              >
+                {state ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    viewBox="0 0 20 20"
+                    fill="white"
+                    stroke="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="white"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 8h16M4 16h16"
+                    />
+                  </svg>
+                )}
+              </button>
             </div>
-          </Link>
-          <div className="md:hidden">
-            <button
-              className="text-gray-700 outline-none p-2 rounded-md focus:border-white border-2 border-white focus:border"
-              onClick={() => setState(!state)}
-            >
-              {state ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  viewBox="0 0 20 20"
-                  fill="white"
-                  stroke="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="white"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 8h16M4 16h16"
-                  />
-                </svg>
-              )}
-            </button>
           </div>
-        </div>
-        <div
-          className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-            state ? "block" : "hidden"
-          }`}
-        >
-          <ul
-            className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0"
-            data-aos="fade-up"
-            data-aos-delay="800"
+          <div
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+              state ? "block" : "hidden"
+            }`}
           >
-            {navigation.map((item, idx) => {
-              return (
-                <li
-                  key={idx}
-                  className="text-white text-sm 
+            <ul
+              className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              {navigation.map((item, idx) => {
+                return (
+                  <li
+                    key={idx}
+                    className="text-white text-sm 
                   hover:text-[#007E8F] border-b-transparent  duration-150"
-                >
-                  <Link to={item.path} className="">
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                  >
+                    <Link to={item.path} className="">
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
-        <div className="flex flex-row justify-between">
-          {/* <div className="hidden md:inline-block mr-20">
+          <div className="flex flex-row justify-between">
+            {/* <div className="hidden md:inline-block mr-20">
             <form className="">
               <div className="relative">
                 <input
@@ -157,43 +166,42 @@ export default function Header() {
             </form>
           </div> */}
 
-          <div className="hidden md:inline-block " data-aos="fade-left">
-            <div className="flexflex-row gap-6 items-center justify-center">
-              {!isUserLoggedIn ? (
-                <div>
-                  <Link
-                    to="/login"
-                    data-aos="zoom-out"
-                    data-aos-delay="800"
-                    className="hover:text-[#007E8F] border-b-2 text-white border-b-transparent hover:border-b-[#007E8F] duration-150 mr-2"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="hover:text-[#007E8F] border-b-2 text-white border-b-transparent hover:border-b-[#007E8F] duration-150"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
-              ) : (
-                <ProfileMenu />
-              )}
+            <div className="hidden md:inline-block " data-aos="fade-left">
+              <div className="flexflex-row gap-6 items-center justify-center">
+                {!isUserLoggedIn ? (
+                  <div>
+                    <Link
+                      to="/login"
+                      data-aos="zoom-out"
+                      data-aos-delay="800"
+                      className="hover:text-[#007E8F] border-b-2 text-white border-b-transparent hover:border-b-[#007E8F] duration-150 mr-2"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="hover:text-[#007E8F] border-b-2 text-white border-b-transparent hover:border-b-[#007E8F] duration-150"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                ) : (
+                  <ProfileMenu />
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
-
+      </nav>
 
       <div className="relative w-full  bg-cover bg-center z-50">
-        <header className="bg-white shadow px-4 py-4 " >
+        <header className="bg-white shadow px-4 py-4 ">
           <div className="container mx-auto px-10 py-8 flex items-center justify-between  ">
             {/* Logo Section */}
             <div className="flex items-center space-x-3">
-              <img src="logo.png" alt="logo" className="w-10 h-10" />
-              <h1 className="text-xl font-bold text-green-800">
-                Mothe Funeral Homes, LLC
+              {/* <img src="logo.png" alt="logo" className="w-10 h-10" /> */}
+              <h1 className="text-xl font-bold text-green-800 hidden">
+                Celebratelife
               </h1>
             </div>
             {/* Navigation */}
@@ -223,7 +231,7 @@ export default function Header() {
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/notification"
                         className="block px-4 py-2 hover:bg-green-100 text-gray-800"
                       >
                         Obituary Notification
@@ -232,7 +240,7 @@ export default function Header() {
                   </ul>
                 )}
               </div>
-  
+
               {/* Our Services Dropdown */}
               <div className="relative group inline-block">
                 <button
@@ -250,7 +258,7 @@ export default function Header() {
                   <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-56">
                     <li>
                       <a
-                        href="#"
+                        href="/funeral"
                         className="block px-4 py-2 hover:bg-green-100 text-gray-800"
                       >
                         Funerals
@@ -307,24 +315,25 @@ export default function Header() {
                   </ul>
                 )}
               </div>
-  
+
               {/* Pre-Plan Now */}
               <div className="hover:text-green-800">
                 <a href="#" className="text-gray-600">
-                Memorials
+                  Memorials
                 </a>
               </div>
               <div className="hover:text-green-800">
                 <a href="#" className="text-gray-600">
-                Pre-Plan Now
-                </a></div>
+                  Pre-Plan Now
+                </a>
+              </div>
               {/* Grief Dropdown */}
               <div className="relative group inline-block">
                 <button
                   className="flex items-center space-x-1 hover:text-green-800"
                   onClick={() => handleDropdown(" Grief")}
                 >
-                  <span>  Grief</span>
+                  <span> Grief</span>
                   {activeDropdown === " Grief" ? (
                     <RiArrowDropUpLine className="h-5 w-5" />
                   ) : (
@@ -368,24 +377,78 @@ export default function Header() {
                   </ul>
                 )}
               </div>
-              <div className="hover:text-green-800">
-                <a href="#" className="text-gray-600">
-                Resources
-                </a>
+              <div>
+                <div className="relative group inline-block">
+                  <button
+                    className="hover:text-green-800 flex items-center space-x-1 "
+                    onClick={() => handleDropdown("Resources")}
+                  >
+                    <span>Resources</span>
+                    {activeDropdown === "Resources" ? (
+                      <RiArrowDropUpLine className="h-5 w-5" />
+                    ) : (
+                      <RiArrowDropDownLine className="h-5 w-5" />
+                    )}
+                  </button>
+                  {activeDropdown === "Resources" && (
+                    <>
+                      <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-56 flex flex-col  text-center gap-1 py-2">
+                        <li>
+                          <a
+                            href="#"
+                            className=" px-4 py-2 hover:bg-green-100 text-gray-800"
+                          >
+                            Social Security Benefits
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className=" px-4 py-2 hover:bg-green-100 text-gray-800"
+                          >
+                            Funeral Etiquette
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className=" px-4 py-2 hover:bg-green-100 text-gray-800"
+                          >
+                            FAQ
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className=" px-4 py-2 hover:bg-green-100 text-gray-800"
+                          >
+                            Cemetery Etiquette
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="#"
+                            className=" px-4 py-2 hover:bg-green-100 text-gray-800"
+                          >
+                            Order More Death Certificates
+                          </a>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                </div>
               </div>
+
               <button className="px-4 py-2 text-white bg-green-800 hover:bg-green-700 rounded-md">
-            IMMEDIATE HELP
-          </button>
+                IMMEDIATE HELP
+              </button>
             </nav>
           </div>
         </header>
       </div>
-
-  
-
-
+    </div>
+    
     </>
-   
   );
 }
-

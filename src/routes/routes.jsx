@@ -13,6 +13,8 @@ import ServiceDetails from "../pages/ServiceDetails";
 import Pricing from "../pages/Pricing";
 import ObituaryNotifications from "../components/Obituary Notifications/Obituary Notifications";
 import FuneralBenefits from "../components/resources/FuneralBeniefits";
+import Funeral from "../components/servicesSection/funeral";
+import OurServices from "../components/servicesSection/OurServices";
 
 const Routes = createBrowserRouter([
   {
@@ -68,9 +70,18 @@ const Routes = createBrowserRouter([
         path: "/notification",
         element: <ObituaryNotifications />,
       },
+
       {
         path: "/funeralBenefits",
         element: <FuneralBenefits />,
+      },
+      {
+        path: "/funeral",
+        element: <Funeral />,
+      },
+      {
+        path: "/ourServices",
+        element: <OurServices />,
       },
     ],
   },
