@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/slices/authSlice";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+import { getAllServices } from "../../features/actions/servicesAction";
 export default function Header() {
   const [state, setState] = useState(false);
-
+const  navigate=useNavigate()
   const navigation = [
     { title: "Home", path: "/" },
     { title: "AI Eulogy", path: "/ai_eulogy" },
@@ -25,6 +26,11 @@ export default function Header() {
   const handleLogout = () => {
     dispatch(logout());
   };
+   const{services}=useSelector((state)=>state.services)
+   console.log("serve",services)
+   useEffect(()=>{
+    dispatch(getAllServices({page:1}))
+   },[])
 
   const[activeDropdown,setActiveDropdown]=useState()
   const dropdownRef= useRef()
@@ -46,10 +52,11 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <>
     <div ref={dropdownRef}>
-    <nav className="bg-purple-500  w-full border-b md:border-0 md:static  z-50">
+    <nav className="bg-red-500 w-full border-b md:border-0 md:static  z-50">
         <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link to="/">
@@ -242,7 +249,7 @@ export default function Header() {
               </div>
 
               {/* Our Services Dropdown */}
-              <div className="relative group inline-block">
+              {/* <div className="relative group inline-block">
                 <button
                   className="flex items-center space-x-1 hover:text-green-800"
                   onClick={() => handleDropdown("ourServices")}
@@ -255,66 +262,106 @@ export default function Header() {
                   )}
                 </button>
                 {activeDropdown === "ourServices" && (
-                  <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-56">
-                    <li>
-                      <a
-                        href="/funeral"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Funerals
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Personalized Services
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Cremation
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Cemetery Property
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        When Death Occurs
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Honoring Life
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-green-100 text-gray-800"
-                      >
-                        Veterans
-                      </a>
-                    </li>
-                  </ul>
+                  // <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-56">
+                  //   <li>
+                  //     <a
+                  //       href="/funeral"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Funerals
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="/personalServices"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Personalized Services
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="#"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Cremation
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="#"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Cemetery Property
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="#"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       When Death Occurs
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="#"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Honoring Life
+                  //     </a>
+                  //   </li>
+                  //   <li>
+                  //     <a
+                  //       href="#"
+                  //       className="block px-4 py-2 hover:bg-green-100 text-gray-800"
+                  //     >
+                  //       Veterans
+                  //     </a>
+                  //   </li>
+                  // </ul>
+                <div>  
+                  <div>{Array.isArray(services)&& services.map((service)=>(
+                    <>
+                       <div key={service._id} 
+                       onClick={() => navigate(`/services/${service._id}`)}>
+                        <div>{service.name}
+                          </div></div>
+                    </>
+                 
+                  ))}</div>    </div>
                 )}
-              </div>
+                </div> */}
+          {/* Our Services Dropdown */}
+<div className="relative group inline-block">
+  <button
+    className="flex items-center space-x-1 hover:text-green-800"
+    onClick={() => handleDropdown("ourServices")}
+  >
+    <span>Our Services</span>
+    {activeDropdown === "ourServices" ? (
+      <RiArrowDropUpLine className="h-5 w-5" />
+    ) : (
+      <RiArrowDropDownLine className="h-5 w-5" />
+    )}
+  </button>
+
+  {/* Dropdown Content */}
+  {activeDropdown === "ourServices" && (
+    <ul className="absolute bg-white border border-gray-300 shadow-lg rounded-md mt-2 w-56 z-10">
+    {Array.isArray(services) && services.length > 0 ? (
+  services.map((service) => (
+    <div key={service._id} onClick={() => navigate(`/services/${service?._id}`)}>
+      {service.name}
+    </div>
+  ))
+) : (
+        <li className="text-gray-500 px-4 py-2">No services available</li>
+      )}
+    </ul>
+  )}
+</div>
+
 
               {/* Pre-Plan Now */}
               <div className="hover:text-green-800">

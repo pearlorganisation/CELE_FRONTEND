@@ -13,7 +13,7 @@ const ServiceDetails = () => {
 
   useEffect(() => {
     dispatch(getServiceById(id));
-  }, []);
+  }, [id]);
 
   console.log(service, "service details");
   return (

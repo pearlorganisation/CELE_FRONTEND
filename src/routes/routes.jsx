@@ -15,6 +15,7 @@ import ObituaryNotifications from "../components/Obituary Notifications/Obituary
 import FuneralBenefits from "../components/resources/FuneralBeniefits";
 import Funeral from "../components/servicesSection/funeral";
 import OurServices from "../components/servicesSection/OurServices";
+import PersonalServices from "../components/servicesSection/PersonalServices";
 
 const Routes = createBrowserRouter([
   {
@@ -83,6 +84,12 @@ const Routes = createBrowserRouter([
         path: "/ourServices",
         element: <OurServices />,
       },
+      {
+        path: "/personalServices",
+        element: <PersonalServices/>,
+      },
+      
+      
     ],
   },
 ]);

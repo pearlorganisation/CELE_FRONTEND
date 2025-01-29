@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getObituariesById } from "../features/actions/obituaryActions";
 import moment from "moment";
+import Galleryslider from "../components/slider/slider";
+import Guestbook from "./guestbook";
+
 
 const ObituariesDetails = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,7 @@ const ObituariesDetails = () => {
   }, []);
 
   const { obituary } = useSelector((state) => state.obituaries);
+  console.log("obit",obituary)
 
   console.log(obituary, "obituary");
   return (
@@ -107,6 +111,15 @@ const ObituariesDetails = () => {
 
         <p className="text-base mt-4 w-[80%]">{obituary?.description} </p>
       </div>
+
+      {/* </> */}
+      {obituary?.guestBooks.name}
+  
+      {/* {obituary?.photoGallery?.images?.map(pic=> (<img src={pic?.secure_url} className="h-20 w-20"/>))} */}
+
+      <Galleryslider pics= {obituary?.photoGallery   }/>
+      <Guestbook data={obituary?.guestBooks}/>
+  
     </div>
   );
 };

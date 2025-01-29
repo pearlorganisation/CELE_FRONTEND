@@ -1,0 +1,27 @@
+[
+    {
+      "label": "Funeral Memorial",
+      "component": "FuneralMemorial"
+    },
+    {
+      "label": "Personal Services",
+      "component": "PersonalServices"
+    },
+    {
+      "label": "Cremation",
+      "component": "Cremation"
+    },
+    {
+      "label": "Cemetery Property",
+      "component": "CemeteryProperty"
+    },
+    {
+      "label": "Honoring Life",
+      "component": "HonoringLife"
+    },
+    {
+      "label": "Veterans",
+      "component": "Veterans"
+    }
+  ]
+  
