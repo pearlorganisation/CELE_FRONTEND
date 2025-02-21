@@ -1,12 +1,12 @@
 import React from 'react'
-import HeaderComp from './HeaderComp'
+// import HeaderComp from './HeaderComp'
 import ImgCard from './ImgCard'
 
 function PersonalServices() {
 
   return (
     <div>
-      <HeaderComp />
+      {/* <HeaderComp /> */}
       <ImgCard
       h1="Personal Services"
       p="When searching for ways to personalize a funeral service, Mothe Funeral Homes, LLC offers a variety of ways to make a service special to the loved one it is inspired by. Whether it be releasing doves, giving military honors or a Harley motorcycle hearse we have a service to match any family."
