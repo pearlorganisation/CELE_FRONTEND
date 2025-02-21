@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderComp from './Headercomp'
+import HeaderComp from './HeaderComp'
 import ImgCard from './ImgCard'
 
 function Cremation() {
