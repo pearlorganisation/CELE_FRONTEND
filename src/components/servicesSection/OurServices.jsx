@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import HeaderComp from './Headercomp';
+import HeaderComp from './HeaderComp';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllServices } from '../../features/actions/servicesAction';
 import ServiceCard from '../ServiceCard/ServiceCard';
