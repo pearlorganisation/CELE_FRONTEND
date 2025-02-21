@@ -1,4 +1,4 @@
-import HeaderComp from "./Headercomp"
+import HeaderComp from "./HeaderComp"
 import ImgCard from "./ImgCard"
 
 function HonoringLife(){

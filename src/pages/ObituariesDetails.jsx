@@ -113,7 +113,7 @@ const ObituariesDetails = () => {
       </div>
 
       {/* </> */}
-      {obituary?.guestBooks.name}
+      {/* {obituary?.guestBooks.name} */}
   
       {/* {obituary?.photoGallery?.images?.map(pic=> (<img src={pic?.secure_url} className="h-20 w-20"/>))} */}
 

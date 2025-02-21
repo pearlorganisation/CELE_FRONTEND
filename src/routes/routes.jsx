@@ -16,6 +16,8 @@ import FuneralBenefits from "../components/resources/FuneralBeniefits";
 import Funeral from "../components/servicesSection/funeral";
 import OurServices from "../components/servicesSection/OurServices";
 import PersonalServices from "../components/servicesSection/PersonalServices";
+import EulogyForm from "../pages/Eulogy";
+import EcommercePage from "../components/Ecommerce/EcommercePage";
 
 const Routes = createBrowserRouter([
   {
@@ -89,7 +91,13 @@ const Routes = createBrowserRouter([
         element: <PersonalServices/>,
       },
       
-      
+      {path:"/Eulogy-ai",
+        element:<EulogyForm/>
+      },
+      {
+        path:"/e-shop",
+        element:<EcommercePage/>
+      }
     ],
   },
 ]);

@@ -11,7 +11,7 @@ function Home() {
 <>
       {/* <Header/> */}
       <HeroSection/>
-      <ReviewRating/>
+      {/* <ReviewRating/> */}
       <ObituariesSec/>
       <FamilyReview/>
       <AddressSec/>

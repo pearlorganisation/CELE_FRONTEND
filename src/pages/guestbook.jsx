@@ -7,7 +7,7 @@ import { getallCandle } from "../features/actions/candleAction.js";
 import { useForm } from "react-hook-form";
 import { IoMdPhotos } from "react-icons/io";
 const Guestbook = ({ data }) => {
-  console.log("data", data.images?.map((img) => img.secure_url))
+  console.log("data", data?.images?.map((img) => img?.secure_url))
 
   const dispatch = useDispatch();
   const { loading, candle, error, success } = useSelector((state) => state.candle);
@@ -88,14 +88,14 @@ const Guestbook = ({ data }) => {
           <div className="flex flex-row gap-4 px-4 py-6 shadow-md">
             {candle?.data?.map((cand) => (
               <div
-                key={cand._id}
-                className={`mx-auto ${selectedCandle === cand._id ? "selected" : ""}`}
-                onClick={() => handleSelectCandle(cand._id)}
+                key={cand?._id}
+                className={`mx-auto ${selectedCandle === cand?._id ? "selected" : ""}`}
+                onClick={() => handleSelectCandle(cand?._id)}
               >
                 <img
-                  src={cand.image.secure_url}
-                  alt={cand.name}
-                  className={`${selectedCandle === cand._id ? "border-4 border-blue-600 rounded-full" : ""} rounded-full w-24 h-24`}
+                  src={cand?.image?.secure_url}
+                  alt={cand?.name}
+                  className={`${selectedCandle === cand?._id ? "border-4 border-blue-600 rounded-full" : ""} rounded-full w-24 h-24`}
                 />
               </div>
             ))}
@@ -141,30 +141,28 @@ const Guestbook = ({ data }) => {
 
       {/* Posts Section */}
 
-         <div>{data.name}</div>
+         <div>{data?.name}</div>
          <p className="text-sm text-gray-500">
-        {data.createdAt ? new Date(data.createdAt).toLocaleDateString() : "Date not available"}
+        {data?.createdAt ? new Date(data?.createdAt).toLocaleDateString() : "Date not available"}
       </p>
       <div className="grid md:grid-cols-3 gap-6">
-   
-      {Array.isArray(data?.images) &&
-          data.images.map((pic, index) => (
-            <div key={pic._id || index}>
-              <div className="  p-6 border mx-auto  rounded-lg hover:shadow-xl transition-shadow duration-300  py-4 overflow-hidden mt-10">
-                <div className="flex gap-4 ">
-              
-                  <div className="flex items-center mx-auto">
-                    <img
-                      src={pic.secure_url}
-                      alt="Gallery"
-                      className="w-40 h-40 rounded-lg "
-                      onClick={() => openModal(pic.secure_url)}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+      {Array.isArray(data?.images) && data?.images.map((pic, index) => (
+  <div key={pic?._id || index}>
+    <div className="p-6 border mx-auto rounded-lg hover:shadow-xl transition-shadow duration-300 py-4 overflow-hidden mt-10">
+      <div className="flex gap-4 ">
+        <div className="flex items-center mx-auto">
+          <img
+            src={pic.secure_url}
+            alt="Gallery"
+            className="w-40 h-40 rounded-lg"
+            onClick={() => openModal(pic.secure_url)}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+))}
+
       </div>
 
       {/* Modal */}

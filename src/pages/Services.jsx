@@ -42,7 +42,7 @@ const Services = () => {
       <div className="grid border  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
         {Array.isArray(services) &&
           services
-            .slice(0, 3)
+            .slice(0, 8)
             .map((service) => (
               <ServiceCard key={service._id} service={service} />
             ))}

@@ -4,11 +4,14 @@ const AboutUs = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/010/008/086/non_2x/background-dimension-3d-graphic-message-board-for-text-and-message-design-line-shadow-for-modern-web-design-free-vector.jpg')`,
+          backgroundImage: `url('src/assets/about-us.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
+
+
+        <div> ⭐⭐⭐⭐</div>
         <div className="text-white w-full h-96 justify-center items-center flex">
           <h1 className="text-4xl text-black font-bold">About us</h1>
         </div>
@@ -39,6 +42,7 @@ const AboutUs = () => {
             website is a permanent way of sharing memories with family,
             relatives and friends from anywhere in the world.
           </p>
+
         </div>
       </div>
     </div>
