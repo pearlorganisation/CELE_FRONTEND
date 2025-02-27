@@ -20,12 +20,12 @@ function Header() {
               </h1>
             </div>
             {/* Navigation */}
-            <nav className="space-x-8 text-sm font-medium text-gray-600 flex items-center">
+            <nav className="space-x-8 text-sm font-medium text-gray-600 flex items-center pl-4">
               {/* Obituaries Dropdown */}
               <div className="relative group inline-block">
                 <button
                   className="flex items-center space-x-1 hover:text-green-800"
-                  onClick={() => handleDropdown(" CelebrateLife")}
+                  onClick={() => handleDropdown("CelebrateLife")}
                 >
                   <span> CelebrateLife</span>
                   {activeDropdown === " CelebrateLife" ? (
