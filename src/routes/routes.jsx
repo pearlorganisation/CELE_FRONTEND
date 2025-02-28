@@ -50,7 +50,7 @@ const Routes = createBrowserRouter([
       },
 
       {
-        path: "obituaries",
+        path: "/obituaries",
         element: <Obituaries />,
       },
       {
@@ -91,7 +91,7 @@ const Routes = createBrowserRouter([
         element: <PersonalServices/>,
       },
       
-      {path:"/Eulogy-ai",
+      {path:"/eulogy-ai",
         element:<EulogyForm/>
       },
       {
