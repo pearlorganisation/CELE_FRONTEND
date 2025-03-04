@@ -17,7 +17,9 @@ const initialState = {
 const obituarySlice = createSlice({
   name: "obituaries",
   initialState,
-  reducers: {},
+  reducers: {
+ 
+  },
   extraReducers: (builder) => {
     builder
 

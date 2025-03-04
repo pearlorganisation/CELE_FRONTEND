@@ -20,15 +20,16 @@ export default function Header() {
   const { services } = useSelector((state) => state.services);
 
   const contactInfo = [
-    
-    {navtitle:"Eulogy",path:"/eulogy-ai"},
-    {navtitle:"Obituries",path:"/obituaries"},
+
+    {navtitle:"Home",path:"/"},
+    {navtitle:"AI Eulogy",path:"/eulogy-ai"},
     {navtitle:"Memorials",path:"/memorials"},
+    // {navtitle:"Obituries",path:"/obituaries"},
     {navtitle:"Pricing",path:"/pricing"},
-    {navtitle:"Services",path:"/services"},
-    {navtitle:"MarketPlace",path:"/marketplace"},
-    {navtitle:"Contact",path:"/contact-us"},
-    { navtitle: "About Us", path: "/about_us" },
+    // {navtitle:"Services",path:"/services"},
+    {navtitle:"Market Place",path:"/marketplace"},
+    { navtitle: "About us", path: "/about_us" },
+    {navtitle:"Contact us",path:"/contact-us"},
     // { title: "NAIROBI", phone: "0722123015" },
     // { title: "KISUMU", phone: "0721955616" },
     // { title: "ELDORET", phone: "0722123015" },
@@ -103,7 +104,7 @@ export default function Header() {
             {contact.title} {contact.phone}
           </a>
           <Link to={contact?.path}>
-            <span className="hover:text-green-200 capitalize">{contact.navtitle}</span>
+            <span className="hover:text-green-200 ">{contact.navtitle}</span>
           </Link>
         </div>
       ))}
@@ -209,12 +210,12 @@ export default function Header() {
 
       {/* Mobile Navigation Panel */}
       <nav
-        className={`fixed top-0 left-0 w-full h-full bg-white z-40 transform ${
+        className={`fixed top-0 left-0 w-full h-full bg-white z-40  transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 shadow-lg`}
       >
-        <div className="bg-[#055611] text-white py-6 px-4">
-          <div className="flex flex-wrap items-center gap-4 text-lg">
+        <div className="bg-[#055611] text-white py-6 px-8">
+          <div className="flex flex-col items-left gap-4 text-lg">
             {/* Contact Info */}
             {contactInfo.map((contact, index) => (
               <div key={index} className="flex items-center gap-2">
@@ -236,23 +237,14 @@ export default function Header() {
         </div>
 
         {/* Navigation Items */}
-        <Link to="/" className="flex items-center gap-3">
-                <img
-                  src="https://www.celebratelife.co.ke/assets/images/logo/logo-white-two.png"
-                  alt="CelebrateLife Logo"
-                  className="w-12 h-12"
-                />
-                <h1 className="text-green-900 font-bold text-2xl">
-                  Celebrate<span className="text-red-600">Life</span>
-                </h1>
-              </Link>
-        <div className="flex flex-col gap-4 px-6 py-4">
+     
+        <div className="flex flex-col bg-[#055611] gap-4 px-8 py-10">
           {navigation.map((item, index) => (
             <div key={index}>
               {item.items ? (
                 <div>
                   <button
-                    className="text-red-600 hover:text-green-800 font-bold w-full text-center flex items-center mx-auto py-2"
+                    className="text-white   font-bold w-full text-center flex items-center mx-auto py-2"
                     onClick={() => handleDropdown(item.title)}
                   >
                     {item.title}
@@ -272,16 +264,15 @@ export default function Header() {
                               ? `/services/${subItem._id}`
                               : subItem.path
                           }
-                          className="block py-1 text-gray-800 hover:text-green-800"
-                        >
-                          {subItem.name}
+                          className="block  text-white  "                      >
+                       <span classname="py-4">{subItem.name}</span>
                         </Link>
                       ))}
                     </div>
                   )}
                 </div>
               ) : (
-                <Link to={item.path} className="text-red-600 hover:text-green-800 font-bold block py-2">
+                <Link to={item.path} className="text-white  font-bold block py-2">
                   {item.title}
                 </Link>
               )}
