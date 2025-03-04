@@ -59,7 +59,7 @@ function HeroSection() {
         <div className="relative">
           <div
             className="relative w-full h-[600px] bg-cover bg-center"
-            style={{ backgroundImage: "url('/src/assets/about-us.jpg')" }}
+            style={{ backgroundImage: "url('/about-us.jpg')" }}
           >
             <div className="absolute  inset-0 left-0 bg-black/5 flex flex-col items-center justify-center text-center text-white px-8">
               <h2 className="text-4xl absolute top-6 text-white font-bold text-left flex self-start uppercase">
