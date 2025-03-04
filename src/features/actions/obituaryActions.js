@@ -3,16 +3,15 @@ import { axiosInstance } from "../../services/axiosInterceptor";
 
 export const getAllObituaries = createAsyncThunk(
   "obituaries/get-all", // Action type
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
+    console.log(page);
     try {
-      const config = {
+      const { data } = await axiosInstance.get(`/api/v1/obituaries`, {
+        params: { page }, // ✅ Correct way to pass query parameters
         headers: {
           "Content-Type": "application/json",
         },
-      };
-
-      // Send GET request to fetch all subjects
-      const { data } = await axiosInstance.get(`/api/v1/obituaries`, config); // Adjust endpoint for fetching all subjects
+      });
 
       return data;
     } catch (error) {

@@ -12,12 +12,14 @@ const initialState = {
   paginate: {},
   error: null,
   success: false,
-};
+};    
 
 const obituarySlice = createSlice({
   name: "obituaries",
   initialState,
-  reducers: {},
+  reducers: {
+ 
+  },
   extraReducers: (builder) => {
     builder
 

@@ -18,6 +18,9 @@ import OurServices from "../components/servicesSection/OurServices";
 import PersonalServices from "../components/servicesSection/PersonalServices";
 import EulogyForm from "../pages/Eulogy";
 import EcommercePage from "../components/Ecommerce/EcommercePage";
+import ContactPage from "../pages/ContactUs";
+import MemorialsPage from "../pages/memorials";
+import FAQ from "../components/resources/Faq";
 
 const Routes = createBrowserRouter([
   {
@@ -50,7 +53,7 @@ const Routes = createBrowserRouter([
       },
 
       {
-        path: "obituaries",
+        path: "/obituaries",
         element: <Obituaries />,
       },
       {
@@ -91,12 +94,24 @@ const Routes = createBrowserRouter([
         element: <PersonalServices/>,
       },
       
-      {path:"/Eulogy-ai",
+      {path:"/eulogy-ai",
         element:<EulogyForm/>
       },
       {
         path:"/e-shop",
         element:<EcommercePage/>
+      },
+      {
+        path:"/contact",
+        element:<ContactPage/>
+      },
+      {
+        path:"/memorial",
+        element:<MemorialsPage/>
+      },
+      {
+        path:"/resources/faq",
+        element:<FAQ />
       }
     ],
   },

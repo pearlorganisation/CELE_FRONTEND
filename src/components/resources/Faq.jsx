@@ -1,152 +1,88 @@
-import React, { useState } from "react";
-import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+"use client";
+import { useState } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
+
+const faqs = [
+  {
+    category: "Frequent Funeral Questions",
+    questions: [
+      { q: "What services do funeral directors perform?", a: "Funeral directors help with planning, paperwork, and ceremonies." },
+      { q: "What are the funeral costs?", a: "Funeral costs vary depending on the services selected." },
+      { q: "What is the purpose of a funeral?", a: "Funerals provide a way to honor and remember the deceased." },
+      { q: "What are the choices for funeral services?", a: "Options include traditional burial, cremation, and memorial services." },
+      { q: "Can you still have a funeral if you choose cremation?", a: "Yes, many people hold a memorial or funeral service before or after cremation." },
+      { q: "Can I plan in advance if I choose cremation?", a: "Yes, pre-planning is a common practice to ease future arrangements." },
+      { q: "What information should I bring to the arrangement conference?", a: "Necessary documents include identification, wills, and insurance details." }
+    ]
+  },
+  {
+    category: "Cemetery Questions",
+    questions: [
+      { q: "Are cemeteries running out of space?", a: "Some areas have limited space, but many still have availability." },
+      { q: "What is Perpetual Care?", a: "A maintenance fund for cemetery upkeep and care." },
+      { q: "Can the vault be personalized?", a: "Yes, vaults can have engravings and decorations." },
+      { q: "Are there vaults for cremated remains?", a: "Yes, cremation vaults are available in many cemeteries." },
+      { q: "Does a body have to be embalmed before it is buried?", a: "Not always, but some cemeteries and funeral homes require it." },
+      { q: "Must I purchase a burial vault?", a: "In many cemeteries, a burial vault is required for ground burials." }
+    ]
+  }
+];
 
 const FAQ = () => {
-  const [openFuneral, setOpenFuneral] = useState(null);
-  const [openCemetery, setOpenCemetery] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleAnswer = (index, type) => {
-    if (type === "funeral") {
-      setOpenFuneral(openFuneral === index ? null : index);
-    } else {
-      setOpenCemetery(openCemetery === index ? null : index);
-    }
+  const toggleQuestion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto p-6 space-y-8">
-      {/* Header Section */}
-      <section className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Frequent Funeral & Cemetery Questions
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Here are some of the most frequently asked questions regarding
-          funerals and cemeteries. Click on the questions to reveal their
-          answers.
-        </p>
-      </section>
-
-      {/* Funeral Questions */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-800">
-          Funeral Questions
-        </h2>
-
-        <div className="space-y-4 mt-4">
-          <div className="border-b pb-2 flex">
-            <button
-              className="w-full text-left text-lg font-semibold text-blue-600 hover:text-blue-800 focus:outline-none flex flex-row"
-              onClick={() => toggleAnswer(0, "funeral")}
-            >
-              What services do funeral directors perform?
-              
-              {openFuneral === 0 ? <>
-
-<RiArrowDropUpLine className="h-5 w-5" />
-</> : <>
-<RiArrowDropDownLine className="h-5 w-5" />
-</>}
-            </button>
-        
-            {openFuneral === 0 && (
-              <p className="mt-2 text-gray-600">
-                The funeral director's job is to assist the bereaved in various
-                ways to help them through the loss of a loved one. They provide
-                bereavement and consolation services and handle arrangements for
-                cremation, burial, and memorial services. Some of their tasks
-                include:
-                <ul className="list-disc list-inside mt-2">
-                  <li>
-                    Removal and transfer of the deceased from the place of death
-                  </li>
-                  <li>
-                    Professional care of the deceased, including embalming
-                  </li>
-                  <li>
-                    Consulting with the family to arrange funeral services
-                  </li>
-                  <li>Arranging for clergy, music, flowers, and more</li>
-                  <li>Filing death certificates and necessary forms</li>
-                </ul>
-              </p>
-            )}
-          </div>
-
-          <div className="border-b pb-2">
-            <button
-              className="w-full text-left text-lg font-semibold text-blue-600 hover:text-blue-800 focus:outline-none"
-              onClick={() => toggleAnswer(1, "funeral")}
-            >
-              What are the funeral costs?
-            </button>
-            {openFuneral === 1 && (
-              <p className="mt-2 text-gray-600">
-                Funeral costs can vary significantly depending on the type of
-                services you choose. These include:
-                <ul className="list-disc list-inside mt-2">
-                  <li>Funeral home services</li>
-                  <li>Cemetery or cremation fees</li>
-                  <li>Embalming and body preparation</li>
-                  <li>Transportation and hearse services</li>
-                </ul>
-                It is best to discuss costs directly with the funeral director
-                to get an accurate estimate based on your preferences.
-              </p>
-            )}
-          </div>
-
-          {/* Additional Funeral Questions can follow a similar structure */}
+    <>
+      {/* Background Section */}
+      <div className="relative h-80">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://lirp.cdn-website.com/5d83079e/dms3rep/multi/opt/About+Mothe+Funeral+Home+LLC+located+in+Southern+Louisiana+with+Funeral+Homes+in+New+Orleans-+Harvey+and+Merrero+LA-1920w.jpg')",
+          }}
+        ></div>
+        <div className="relative h-full flex items-center justify-center text-center">
+          <h1 className="text-white text-5xl font-bold">FAQ</h1>
         </div>
-      </section>
+      </div>
 
-      {/* Cemetery Questions */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-800">
-          Cemetery Questions
-        </h2>
-
-        <div className="space-y-4 mt-4">
-          <div className="border-b pb-2">
-            <button
-              className="w-full text-left text-lg font-semibold text-blue-600 hover:text-blue-800 focus:outline-none"
-              onClick={() => toggleAnswer(0, "cemetery")}
-            >
-              Are cemeteries running out of space?
-            </button>
-            {openCemetery === 0 && (
-              <p className="mt-2 text-gray-600">
-                Many cemeteries are running low on space, particularly in urban
-                areas. However, cemeteries are continually finding ways to
-                accommodate burials, including vertical mausoleums or expanding
-                to neighboring land. It’s best to inquire about available plots
-                at your local cemetery.
-              </p>
-            )}
+      {/* FAQ Section */}
+      <div className="bg-gray-100 min-h-screen p-6">
+        {faqs.map((section, sectionIndex) => (
+          <div key={sectionIndex} className="max-w-3xl mx-auto mb-8">
+            <h2 className="text-3xl font-bold text-green-800">{section.category}</h2>
+            <p className="text-gray-600 mb-4">Click on the questions below to reveal each respective answer.</p>
+            <div className="space-y-4">
+              {section.questions.map((item, index) => {
+                const isOpen = openIndex === `${sectionIndex}-${index}`;
+                console.log(isOpen,"isopen")
+                return (
+                  <div key={index} className="border border-gray-300 rounded-md overflow-hidden">
+                    <button
+                      className="w-full text-left px-4 py-3 bg-white hover:bg-gray-100 flex justify-between items-center relative"
+                      onClick={() => toggleQuestion(`${sectionIndex}-${index}`)}
+                    >
+                      <span className="font-medium">{item.q}</span>
+                      <RiArrowDropDownLine
+                        className={`absolute right-4 top-1/2 transform -translate-y-1/2 text-3xl transition-transform ${
+                          isOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </button>
+                    {isOpen && <div className="p-4 bg-gray-50 text-gray-700">{item.a}</div>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-
-          <div className="border-b pb-2">
-            <button
-              className="w-full text-left text-lg font-semibold text-blue-600 hover:text-blue-800 focus:outline-none"
-              onClick={() => toggleAnswer(1, "cemetery")}
-            >
-              What is Perpetual Care?
-            </button>
-            {openCemetery === 1 && (
-              <p className="mt-2 text-gray-600">
-                Perpetual Care is an ongoing maintenance program that ensures a
-                cemetery’s grounds are cared for indefinitely. This includes
-                mowing, landscaping, and upkeep of graves, monuments, and
-                pathways. It is typically funded through a one-time payment or
-                as part of a burial package.
-              </p>
-            )}
-          </div>
-
-          {/* Additional Cemetery Questions can follow a similar structure */}
-        </div>
-      </section>
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

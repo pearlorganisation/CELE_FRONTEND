@@ -125,7 +125,7 @@ const OurServices = () => {
           services
             .slice(2,6)
             .map((service) => (
-              <ServiceCard key={service._id} service={service} />
+              <ServiceCard key={service._id} service={service} className="ml-4" />
             ))}
       </div>
       <div className='px-4 py-10'>
